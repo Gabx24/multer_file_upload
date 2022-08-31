@@ -3,6 +3,7 @@ const app = express();
 const PORT = 8080;
 const multer = require("multer");
 const path = require("path");
+const db = require("./database/client.js");
 
 app.use(express.static("views"));
 app.use(express.static("images"));
@@ -67,6 +68,8 @@ app.post("/upload-cat-pics", upload.array("cat_pics"), (req, res) => {
     `<h2>Here are the pictures:</h2><img src="${req.files.filename}" alt="something" />`
   );
 });
+
+app.get("/get-pics");
 
 app.use((error, req, res, next) => {
   console.log("This is the rejected field ->", error.field);
